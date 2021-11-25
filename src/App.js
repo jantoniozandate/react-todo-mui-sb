@@ -9,7 +9,7 @@ import Todo from './Features/Todo';
 
 export default function App() {
   return (
-    <div style={{ height: '100vh' }}>
+    <div>
       <StyledEngineProvider injectFirst>
         <Todo />
       </StyledEngineProvider>

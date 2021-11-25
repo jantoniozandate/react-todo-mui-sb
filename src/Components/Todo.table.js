@@ -11,6 +11,16 @@ import {
   Typography,
 } from '@mui/material';
 import { Avatar, Checkbox, Paper } from '@mui/material';
+import {
+  deepOrange,
+  deepPurple,
+  teal,
+  green,
+  yellow,
+  amber,
+  cyan,
+  indigo,
+} from '@mui/material/colors';
 
 import TablePaginationActions from './Table.pagination';
 
@@ -23,6 +33,23 @@ export default function TodoTable(props) {
     handleChangePage,
     handleChangeRowsPerPage,
   } = props;
+
+  const colors = [
+    deepOrange[500],
+    deepPurple[500],
+    teal[500],
+    green[500],
+    yellow[500],
+    amber[500],
+    cyan[500],
+    indigo[500],
+  ];
+  const getRandomColor = (initials) => {
+    const initialsVal = parseInt(initials.toUpperCase(), 36) - 10;
+    const rand = Math.floor(initialsVal % colors.length);
+    const color = colors[rand];
+    return { bgcolor: color };
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -40,7 +67,9 @@ export default function TodoTable(props) {
             .map((listItem, indexItem) => (
               <TableRow hover={true} selected={listItem.completed}>
                 <TableCell>
-                  <Avatar name={listItem.userName} />
+                  <Avatar sx={getRandomColor(listItem.userName)}>
+                    {listItem.userName}
+                  </Avatar>
                 </TableCell>
 
                 <TableCell>
